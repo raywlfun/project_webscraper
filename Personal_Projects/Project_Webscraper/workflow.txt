@@ -1,0 +1,19 @@
+# Webscraper - extracts data from websites
+-> Allows identification of useful and relevant information
+    -> Storage and compilation of relevant information
+
+# Basic workflow
+i. --> Website in the format of html
+    ii. --> Python webscraper script
+        iii. --> Output data in the format of json or other formats
+
+Basic parameters
+- URL of website
+- What components of the page do we want to extract?
+    --> i.e. "tags" (headers, logo, paragraph,  navigation links...)
+
+
+Basic requisites
+- Some familiarity with html structures (e.g. "tags")
+- Basic python fundamentals
+- Data processing and manipulation
