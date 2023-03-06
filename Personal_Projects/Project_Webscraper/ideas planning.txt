@@ -3,6 +3,16 @@
 Objective 1 - Create a script that extracts a dataset from a public website
 Objective 2 - Produce a visualisation of the cleaned data that we are interested in
 
+What data source?
+-- Interested in extracting statistics data from Indeed - as it allows webscraping
+
+Things to consider:
+- Main figures like salary
+- Date of publication
+- Company reviews
+- Job headers
+- Content body [paragraph tags]
+
 Learning Goals:
 1) --> Practice handling of raw data
     - What data do we want?

@@ -5,7 +5,8 @@
 # Basic workflow
 i. --> Website in the format of html
     ii. --> Python webscraper script
-        iii. --> Output data in the format of json or other formats
+        iii. --> Preprocess and clean the data in desired data format
+            iv. --> Write data to an accessible file (eg. csv, json)
 
 Basic parameters
 - URL of website
