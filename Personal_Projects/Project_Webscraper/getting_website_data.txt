@@ -1,0 +1,6 @@
+HTML site comprises of:
+- Content in the form of <tags>
+
+Example:
+<div> -- opening tag
+</div> -- closing tag
