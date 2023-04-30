@@ -1,0 +1,35 @@
+Divisions
+    - Generic container element used to organise and group elements, similar to encapsulating elements in a hierarchical fashion
+        // <div class="container">
+            // <h1> header information </h1>
+                // ...
+            ...
+        // </div>
+
+Headings
+    - Allows the content to be broken down and organised into specific sections
+        // <head>, <h1>, <h2>...
+        // <h1> Header information for section about statistics </h1>
+
+Paragraphs
+    - Detailed information surrounding the topic ( / section)
+        // <p> some information about topic </p>
+
+Tables
+    - Allows for a structured and organised way of presenting statistical information
+        // <table> (instantiate that there will be a table), <thead> (table header), <tbody> (table body), <tfoot> (table footer)
+            // Within any of these: <tr> (table row), <th> (table header; essentially a column label), <td> (table cell)
+
+Lists
+    - Can group items or present them in a formatted style
+        // <ul> (unordered list; bullet points), <ol> (ordered list; numbered list)
+
+Images
+    - Display images
+        // <img src="image.jpg" alt="image description"> (src = source: can be local file or url pointing to image file; alt = optional attribute pertaining to text description surrounding said image)
+        // Can also specify the image dimensions, alongside the "class" and "id" for CSS styling - but won't dive into that just yet.
+
+Span
+    - Apply styles to specific parts of a text string (highlight, italics...), by encapsulating around the desired text
+        // <p> some text surrounding the interpretations of recent <span style="color": green;">statistical</span> data. </p>
+
