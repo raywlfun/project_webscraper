@@ -1,5 +1,7 @@
-import re
+# from __future__ import annotations # In lieu of using Optional type hint, import this to use | syntax
+from typing import List, Optional
 
+import re
 from bs4 import BeautifulSoup
 from Personal_Projects.Project_Webscraper.sample_html import html_page_information, write_to_html_file
 import lxml
@@ -19,12 +21,7 @@ class ContinentData:
     mean_push_ups: int
 
 
-# with open(write_to_html_file(html_page_information)) as file:
-#     fabricated_html_data = file.read()
-
-
-# Establish whether the input to be read is a filepath or url
-def read_html_content(html_url_or_filepath: str) -> str:
+def read_html_content(html_url_or_filepath: str) -> Optional[str]:
     if os.path.isfile(html_url_or_filepath):
         with open(html_url_or_filepath, 'r') as file:
             html_content = file.read()
@@ -44,39 +41,38 @@ def parse_html_content(html_content: str) -> BeautifulSoup:
     return BeautifulSoup(html_content, 'html.parser')
 
 
-def find_statistics_divs(page_content: BeautifulSoup) -> list:
+def find_statistics_divs(page_content: BeautifulSoup) -> List[str]:
     return page_content.findAll('div', class_='Fabricated_statistics')
 
 
+def extract_numerical_data_from_statistics_divs(divs: List[str]) -> List[int]:
+    numerical_data = []
 
-def get_website_contents(html_url_or_filepath: str):
-    html_content = read_html_content(html_url_or_filepath)
-    if html_content is not None:
-        page_content = parse_html_content(html_content)
-        content_body = find_statistics_divs(page_content)
-        print(content_body)
-        return content_body
-    else:
-        return None
+    for div in divs:
+        numerical_string = re.findall(r'\d+', str(div))  # Convert div from beautifulsoup object to str
+        numerical_data.extend(int(content_string) for content_string in numerical_string)
+    return numerical_data
 
 
-raw_webscraped_data = get_website_contents('sample_page.html')
-
-
-# Remove HTML tags from webscraped data
-
-def clean_webscraped_data(webscraped_data: str) -> list:
+def clean_webscraped_data(page_content: BeautifulSoup) -> List[int]:
     """
     Personal learning note: Using re(.findall, .sub) to extract all numeric strings / replace all occurrences of a string by the string replacement
     Personal research indicates this is a conventional way of removing html tags and unwanted formatting like commas, to acquire just the numerical data.
     re = regular expression --> Regex
     """
-    cleaned_data = []
-    numerical_strings = re.findall(r'\d+', webscraped_data)
-    for numerical_string in numerical_strings:
-        cleaned_numerical_string = re.sub(r'<.*?>', '', numerical_string)
-        cleaned_data.append(int(cleaned_numerical_string)) # Convert str to int
+
+    statistics_divs = find_statistics_divs(page_content)
+
+    cleaned_data = extract_numerical_data_from_statistics_divs(statistics_divs)
 
     return cleaned_data
 
-clean_webscraped_data(raw_webscraped_data)
+
+html_content = read_html_content('sample_page.html')
+raw_webscraped_data = parse_html_content(html_content)
+cleaned_data = clean_webscraped_data(raw_webscraped_data)
+
+print(cleaned_data)
+
+# TODO: Reformat html data cleaning to also return relevant data pertaining to ContinentData dataclass.
+#  Currently, it only returns the numerical data
